@@ -191,6 +191,8 @@ p {
   }
 
   .services-section {
+    margin-top: 40px;
+    /* מרווח קטן יותר במובייל */
     padding: 40px 0;
   }
 
@@ -512,16 +514,13 @@ img {
 .services-section {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 60px 0;
-  /* שינוי מ-60px 20px */
   background: #f9f9f9;
   direction: rtl;
   font-family: 'Heebo', sans-serif;
   width: 100%;
-  /* הוספת רוחב מלא */
-  margin: 0;
-  /* הסרת השוליים */
+  margin-top: 60px;
+  /* הוספת מרווח מלמעלה */
   overflow: hidden;
-  /* מניעת גלישה */
 }
 
 .container-services {
