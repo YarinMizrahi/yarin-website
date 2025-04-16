@@ -191,19 +191,26 @@ p {
   }
 
   .services-section {
-    margin-top: 40px;
-    /* מרווח קטן יותר במובייל */
-    padding: 40px 0;
+    padding: 40px 15px;
   }
 
   .container-services {
-    padding: 0 15px;
+    width: 95%;
+    padding: 0;
+  }
+
+  .service-card {
+    margin: 10px 0;
+  }
+
+  .services-grid {
+    padding: 0 10px;
   }
 
   .service-card {
     flex: 1 1 100%;
     max-width: 100%;
-    margin: 0 15px;
+    margin: 0;
   }
 }
 
@@ -518,29 +525,17 @@ img {
   direction: rtl;
   font-family: 'Heebo', sans-serif;
   width: 100%;
-  margin-top: 60px;
-  /* הוספת מרווח מלמעלה */
+  margin: 60px auto 0;
   overflow: hidden;
 }
 
 .container-services {
   max-width: 1200px;
+  width: 90%;
   margin: 0 auto;
-  padding: 0 20px;
-  /* שינוי הפדינג */
+  padding: 0;
   text-align: center;
-}
-
-.section-title {
-  font-size: 32px;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.section-subtitle {
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 40px;
+  box-sizing: border-box;
 }
 
 .services-grid {
@@ -549,9 +544,10 @@ img {
   gap: 20px;
   justify-content: center;
   margin: 0 auto;
-  /* הוספת מרכוז */
   max-width: 1200px;
-  /* הגבלת רוחב מקסימלי */
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .service-card {
@@ -561,6 +557,7 @@ img {
   padding: 25px;
   flex: 1 1 280px;
   max-width: 300px;
+  margin: 10px;
   transition: transform 0.3s ease;
 }
 
