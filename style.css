@@ -1,14 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
   background-color: #F2E6AC;
+  scroll-behavior: smooth;
+}
+
+body {
   font-family: 'Segoe UI', sans-serif;
+  position: relative;
 }
 
 html {
   scroll-behavior: smooth;
-  /* מבטיח שגלילת הדף תהיה חלקה */
+  font-size: 16px;
+}
+
+@media screen and (min-width: 320px) {
+  html {
+    font-size: calc(16px + 2 * ((100vw - 320px) / 680));
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  html {
+    font-size: 18px;
+  }
 }
 
 header {
@@ -23,17 +51,18 @@ header {
   padding: 10px;
   color: #2D3845;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
   font-weight: 700;
   text-decoration: none;
   transition: color 0.3s ease;
-  min-width: 180px; /* Reduced from 230px */
+  white-space: nowrap;
 }
 
 .logo:hover {
   color: #000000;
 }
-/* עיצוב navbar */
+
+/* Base navbar styles */
 .navbar {
   position: fixed;
   top: 0;
@@ -41,25 +70,26 @@ header {
   right: 0;
   background-color: #fff;
   z-index: 1000;
-  padding: 10px 20px;
+  padding: 15px 5%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .navbar ul {
   display: flex;
-  justify-content: center;
-  gap: 20px; /* Reduced from 30px */
-  list-style-type: none;
+  gap: clamp(10px, 2vw, 20px);
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 .navbar li a {
   color: #000;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
   position: relative;
   transition: color 0.3s ease;
   font-family: 'Exo 2', sans-serif;
@@ -81,19 +111,35 @@ header {
   left: 0;
   right: auto;
 }
-p{
+
+p {
   font-family: 'Heebo', sans-serif;
-  color: #ffffff ;
-  font-size: 1.1rem ;
+  color: #ffffff;
+  font-size: 1.1rem;
   line-height: 1.8;
   text-align: center;
   font-style: italic;
 }
+
 .navbar li a:hover {
   color: #444444;
 }
 
-/* Add media query for mobile devices */
+/* Responsive breakpoints */
+@media screen and (max-width: 1024px) {
+  .hero-text h1 {
+    font-size: clamp(32px, 6vw, 64px);
+  }
+
+  .hero-text p {
+    font-size: clamp(18px, 3vw, 24px);
+  }
+
+  .about-container {
+    padding: 40px 5%;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -101,18 +147,99 @@ p{
   }
 
   .logo {
-    margin-bottom: 10px;
-    min-width: unset;
-    font-size: 1.5rem;
+    margin-bottom: 15px;
   }
 
   .navbar ul {
-    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
-  .navbar li a {
-    font-size: 1rem;
+  .projects-container {
+    grid-template-columns: 1fr;
+    padding: 20px 5%;
   }
+
+  .service-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .hero {
+    background-attachment: scroll;
+    /* ביטול ה-fixed בטלפונים */
+    background-position: center center;
+    min-height: 100vh;
+    /* שימוש ב-min-height במקום height */
+  }
+
+  .hero-content {
+    width: 90%;
+    /* הגבלת רוחב התוכן */
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(32px, 8vw, 48px);
+    /* התאמת גודל הכותרת */
+  }
+
+  .hero-text p {
+    font-size: clamp(18px, 4vw, 24px);
+    /* התאמת גודל הטקסט */
+  }
+
+  .services-section {
+    padding: 40px 0;
+  }
+
+  .container-services {
+    padding: 0 15px;
+  }
+
+  .service-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+    margin: 0 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-content {
+    padding: 20px;
+    width: 90%;
+  }
+
+  .about-text,
+  .about-image {
+    min-width: 100%;
+  }
+
+  .contact-form {
+    width: 90%;
+  }
+
+  .services-section {
+    margin: 30px 15px;
+  }
+}
+
+/* Add to existing sections */
+.hero,
+.about-container,
+.projects-container,
+.services-grid {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* Improve images responsiveness */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* הוסף את זה לכל סקשן עם ID */
@@ -121,7 +248,6 @@ p{
 #projects,
 #contact {
   scroll-margin-top: 80px;
-  /* תתאם לפי הגובה של ה-navbar שלך */
 }
 
 #about {
@@ -140,7 +266,6 @@ p{
   gap: 40px;
   font-family: 'Heebo', sans-serif;
 }
-
 
 .about-text {
   flex: 1;
@@ -170,27 +295,26 @@ p{
 .about-image img {
   width: 100%;
   max-width: 300px;
-
 }
 
 .hero {
   background-image: url('assets/img/pascal-scholl-ag7vUvexrPE-unsplash.jpg');
-  /* תחליף לשם הקובץ שלך */
   height: 100vh;
-  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: fill;
+  background-size: cover;
+  /* שינוי מ-fill ל-cover */
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: white;
+  position: relative;
+  /* הוספת position relative */
 }
 
 .hero-content {
   background-color: rgba(0, 0, 0, 0.5);
-  /* מסך כהה עדין */
   padding: 40px;
   border-radius: 16px;
 }
@@ -330,7 +454,6 @@ p{
 
 .contact-form button {
   background-color: #000000;
-  /* חום מהפלטה שלך */
   color: #fff;
   border: none;
   padding: 14px 24px;
@@ -359,7 +482,6 @@ p{
   display: inline-block;
   padding: 10px 20px;
   background-color: #2d3845;
-  /* חום כהה */
   color: #ffffff;
   text-decoration: none;
   border-radius: 8px;
@@ -371,17 +493,13 @@ p{
 
 .project-button:hover {
   background-color: #55544f;
-  /* בז' בהיר */
   color: #777777;
-  /* כחול כהה */
   transform: scale(1.05);
 }
 
 .site-footer {
   background-color: #2D3845;
-  /* צבע כהה מהפלטה שלך */
   color: #F2E6AC;
-  /* צבע בהיר לטקסט */
   text-align: center;
   padding: 20px;
   font-family: 'Heebo', sans-serif;
@@ -393,19 +511,24 @@ p{
 
 .services-section {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin:70px;
-  padding: 60px 20px;
+  padding: 60px 0;
+  /* שינוי מ-60px 20px */
   background: #f9f9f9;
   direction: rtl;
   font-family: 'Heebo', sans-serif;
+  width: 100%;
+  /* הוספת רוחב מלא */
+  margin: 0;
+  /* הסרת השוליים */
+  overflow: hidden;
+  /* מניעת גלישה */
 }
 
-.container-services{
-  margin: auto;
-  padding: 60px 20px;
-  background: #f9f9f9;
-  max-width: 1000px;
+.container-services {
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
+  /* שינוי הפדינג */
   text-align: center;
 }
 
@@ -426,6 +549,10 @@ p{
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  margin: 0 auto;
+  /* הוספת מרכוז */
+  max-width: 1200px;
+  /* הגבלת רוחב מקסימלי */
 }
 
 .service-card {
@@ -452,4 +579,20 @@ p{
   font-size: 16px;
   color: #ffffff;
   line-height: 1.6;
+}
+
+/* עדכון לסקשנים */
+section {
+  width: 100%;
+  margin: 0;
+  padding: 60px 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+  box-sizing: border-box;
 }
